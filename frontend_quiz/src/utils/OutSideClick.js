@@ -1,0 +1,16 @@
+import { useEffect } from "react";
+
+const OutSideClick = (ref, setOpen) => {
+  useEffect(() => {
+    function handleClickSide(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickSide);
+    return () => {
+      document.removeEventListener("mousedown", handleClickSide);
+    };
+  }, [ref]);
+};
+export default OutSideClick;
